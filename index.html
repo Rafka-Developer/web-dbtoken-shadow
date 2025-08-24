@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Database Vinzxyz — Panel</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Background -->
+  <div class="bg"></div>
+
+  <!-- LOGIN -->
+  <div id="loginPage" class="login-page">
+    <div class="login-card">
+      <div class="login-logo"><i class="fa-solid fa-database"></i></div>
+      <h2>Database Vinzxyz</h2>
+      <p class="login-sub">Silakan login untuk melanjutkan</p>
+      <form id="loginForm">
+        <div class="input-group">
+          <i class="fa-solid fa-user"></i>
+          <input type="text" id="loginUsername" placeholder="Username" required />
+        </div>
+        <div class="input-group">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" id="loginPassword" placeholder="Password" required />
+        </div>
+        <button type="submit" class="btn primary"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="appPage" style="display:none;">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="logo">DK</div>
+        <div class="brand-text">
+          <span class="brand-title">Database Vinzxyz</span>
+          <span class="brand-sub">Control Panel</span>
+        </div>
+        <button class="close-btn" id="closeSidebar" aria-label="Tutup menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <nav class="menu">
+        <button class="menu-item active" data-target="dashboard">
+          <i class="fa-solid fa-gauge-high"></i><span>Dashboard</span>
+        </button>
+        <button class="menu-item" data-target="add">
+          <i class="fa-solid fa-plus"></i><span>Add Token</span>
+        </button>
+        <button class="menu-item" data-target="list">
+          <i class="fa-solid fa-list-ul"></i><span>List Token</span>
+        </button>
+        <button class="menu-item admin-only" data-target="manage">
+          <i class="fa-solid fa-user-gear"></i><span>Manage Akun</span>
+        </button>
+        <button class="menu-item" id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <span class="foot-hint">Shadow Database Web • v1.0</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="hamburger" id="openSidebar" aria-label="Buka menu">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+        <h1 class="title">Database Vinzxyz</h1>
+        <div class="user-actions">
+          <span id="currentUser" class="badge"></span>
+        </div>
+      </header>
+
+      <section class="content">
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="page page-active">
+          <div class="cards">
+            <div class="card">
+              <div class="card-head"><i class="fa-solid fa-key"></i><h3>Total Token</h3></div>
+              <div class="card-value" id="totalTokens">0</div>
+            </div>
+            <div class="card">
+              <div class="card-head"><i class="fa-solid fa-shield-halved"></i><h3>Status</h3></div>
+              <div class="card-value small">Secure • GitHub Mode</div>
+            </div>
+            <div class="card">
+              <div class="card-head"><i class="fa-solid fa-users"></i><h3>Total User</h3></div>
+              <div class="card-value" id="totalUsers">0</div>
+            </div>
+          </div>
+          <div class="card block">
+            <h2>Selamat datang 👋</h2>
+            <p>Web ini Di Ciptakan Untuk Mempermudah Manage Token Script Bot Telegram<code> Web By</code> Vinzxyz Developer.</p>
+          </div>
+        </section>
+
+        <!-- ADD TOKEN -->
+        <section id="add" class="page">
+          <div class="card block">
+            <h2><i class="fa-solid fa-plus"></i> Tambah Token</h2>
+            <form id="addForm" class="form-row">
+              <input type="text" id="tokenInput" class="input" placeholder="Masukkan token baru..." required />
+              <button type="submit" class="btn primary"><i class="fa-solid fa-paper-plane"></i> Tambah</button>
+            </form>
+            <p class="hint">Duplikasi otomatis ditolak.</p>
+          </div>
+        </section>
+
+        <!-- LIST TOKEN -->
+        <section id="list" class="page">
+          <div class="card block">
+            <div class="list-head">
+              <h2><i class="fa-solid fa-list-ul"></i> Daftar Token</h2>
+              <div class="search-wrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchBox" class="input ghost" placeholder="Cari token..." />
+              </div>
+            </div>
+            <ul id="tokenList" class="token-list"></ul>
+            <div class="empty" id="emptyState">
+              <i class="fa-regular fa-folder-open"></i>
+              <p>Belum ada token.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- MANAGE AKUN (ADMIN/OWNER ONLY) -->
+       <section id="manage" class="page"> 
+         <div class="card block">
+          <h2><i class="fa-solid fa-user-gear"></i> Manage Akun</h2>
+            <form id="addAccountForm" class="form">
+           <input type="text" id="newUser" placeholder="Username" class="input" required>
+        <input type="password" id="newPass" placeholder="Password" class="input" required>
+      
+      <!-- MANAGE ROLE -->
+      <div class="select-wrapper">
+        <select id="newRole">
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn primary">Tambah Akun</button>
+    </form>
+    
+    <ul id="manageAccounts" class="token-list"></ul>
+  </div>
+</section>
+
+  <!-- MODEL (Alert / Confirm / Prompt) -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <p id="modalMessage"></p>
+      <input id="modalInput" class="input" style="display:none;margin-top:10px;" placeholder="Ketik di sini..." />
+      <div class="modal-buttons">
+        <button id="modalYes" class="btn danger">Yes</button>
+        <button id="modalNo" class="btn">No</button>
+        <button id="modalOk" class="btn primary">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+      </html>
