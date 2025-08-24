@@ -1,7 +1,7 @@
 /***** GITHUB SETING *****/
-const GITHUB_REPO = "Rafka-Official/web-dbtoken-shadow";   // ganti dengan username dan repo kamu
+const GITHUB_REPO = "Rafka-Developer/web-dbtoken-shadow";   // ganti dengan username dan repo kamu
 const DATA_FILE   = "data.json";  // sesuaiin aja
-const GITHUB_TOKEN = "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";   // ganti dengan token github kamu
+const GITHUB_TOKEN = "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";   // ganti dengan token github kamu
 
 /***** STRUKTUR *****/
 let db = { tokens: [], accounts: [] };
